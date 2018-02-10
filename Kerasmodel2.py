@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 tsize = 18047
 
-x_train = np.random.randn(tsize, 4)
+x_train = np.random.randn(tsize, 5)
 y_train = np.random.randint(85, size=(tsize, 1))
 
 df = pd.read_csv("TravelDatabase2.csv")
@@ -23,11 +23,22 @@ for i in range(tsize):
 	x_train[i][0] =  df['quarter'][i]
 	x_train[i][1] = df['Age'][i]
 	if df['Sex'][i] == '#NULL!':
-		x_train[i][2] = 0.5
+		x_train[i][2] = 0.5	
 	else: 
 		x_train[i][2] = df['Sex'][i]
 	x_train[i][3] = df['duration'][i]
-	#x_train[i][4] = float(df['spend'][i])
+	if df['spend'][i] <= '50000':
+		x_train[i][4] = 1
+	elif df['spend'][i] <= '200000':
+		x_train[i][4] = 2
+	elif df['spend'][i] <= '500000':
+		x_train[i][4] = 3
+	elif df['spend'][i] <= '2000000':
+		x_train[i][4] = 4
+	elif df['spend'][i] <= '5000000':
+		x_train[i][4] = 5
+	else:
+		x_train[i][4] = 6
 	y_train[i] = df['country'][i] - 10
 y_train = to_categorical(y_train, num_classes = 85)
 
@@ -36,10 +47,12 @@ y_train = to_categorical(y_train, num_classes = 85)
 y_test = to_categorical(np.random.randint(80, size=(100, 1)), num_classes=80)'''
 
 model1 = Sequential()
-model1.add(Dense(64, activation='relu', input_dim=4))
+model1.add(Dense(64, activation='tanh', input_dim=5))
 #model.add(Dropout(0.2))
-model1.add(Dense(32, activation='relu'))
+model1.add(Dense(64, activation='tanh'))
 #model.add(Dropout(0.2))
+model1.add(Dense(32, activation='tanh'))
+model1.add(Dense(64, activation='tanh'))
 model1.add(Dense(85, activation='softmax'))
 
 model1.compile(loss='categorical_crossentropy',
@@ -48,7 +61,7 @@ model1.compile(loss='categorical_crossentropy',
 
 model1.fit(x_train, y_train,
           epochs=30,
-          batch_size=128)
+          batch_size = 64)
 
 model_json = model1.to_json()
 with open("model.json", "w") as json_file:
