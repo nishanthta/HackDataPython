@@ -45,4 +45,16 @@ pred3 = loaded_model3.predict(x_in)
 
 pred = (pred1 + pred2 + pred3)/3
 
-print(np.argmax(pred))
+print(pred)
+
+i = iter(pred)
+pred_dict = {pred[0][i]: i for i in range(0, 85)}
+
+pred_dict = sorted(pred_dict.items())
+
+prefs = []
+
+for _,value in pred_dict:
+	prefs.append(value)
+
+print(prefs)

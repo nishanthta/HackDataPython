@@ -1,0 +1,62 @@
+10 Austria
+11 Belgium
+12 Bulgaria
+13 Croatia
+14 Czech Republic 
+15 Cyprus EU
+16 Cyprus
+17 Denmark
+18 Estonia
+19 Finland
+20 France
+21 Germany
+22 Gibraltar
+23 Greece
+24 Hungary
+25 Iceland
+26 Irish Republic 
+27 Italy
+28 Latvia
+29 Lithuania
+30 Luxembourg
+31 Malta
+32 Netherlands
+33 Norway
+34 Poland
+35 Portugal
+36 Romania
+37 Russia
+38 Spain
+39 Slovakia
+40 Slovenia
+41 Sweden
+42 Switzerland
+43 Turkey
+44 Channel Islands
+45 Other Europe
+50 Egypt
+51 Tunisia
+52 Other North Africa 
+53 South Africa
+54 Other Africa
+60 Israel
+61 United Arab Emirates 
+62 Other Middle East
+70 China – Hong Kong 
+71 China
+72 India
+73 Japan
+74 Pakistan 
+75 Sri Lanka 
+76 Thailand 
+77 Other Asia
+80 Canada
+81 USA
+82 Mexico
+83 Other Central & South America 
+84 Barbados
+85 Jamaica
+86 Other Caribbean
+90 Australia
+91 New Zealand 
+92 Other countries
