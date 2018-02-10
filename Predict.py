@@ -1,15 +1,7 @@
 import numpy as np
-import pandas as pd
-import sklearn
-from keras.models import Model, Input, Sequential, model_from_json
-from keras.layers import Dense, Activation, Average, Dropout
-from keras.utils import to_categorical
-import keras.backend as K
-from keras.losses import categorical_crossentropy
-from keras.callbacks import ModelCheckpoint, TensorBoard
-from keras.optimizers import Adam, SGD
-from sklearn.model_selection import train_test_split
-from matplotlib import pyplot as plt
+from keras.models import model_from_json
+
+num_queries = 5
 
 json_file = open('model1.json', 'r')
 loaded_model_json = json_file.read()
@@ -45,8 +37,6 @@ pred3 = loaded_model3.predict(x_in)
 
 pred = (pred1 + pred2 + pred3)/3
 
-print(pred)
-
 i = iter(pred)
 pred_dict = {pred[0][i]: i for i in range(0, 85)}
 
@@ -57,4 +47,16 @@ prefs = []
 for _,value in pred_dict:
 	prefs.append(value)
 
-print(prefs)
+prefs.reverse()
+data = {}
+
+with open('CountryDB.txt') as f:
+	cnt = 1
+	line = f.readline()
+	while line:
+		data[cnt] = line.strip()
+		line = f.readline()
+		cnt += 1
+
+for i in range(num_queries):
+	print(data[prefs[i]])
