@@ -25,11 +25,11 @@ loaded_model3 = model_from_json(loaded_model_json)
 loaded_model3.load_weights("model3.h5")
 
 x_in = np.random.randn(1,5)
-x_in[0][0] = 1
-x_in[0][1] = 3
-x_in[0][2] = 1	
-x_in[0][3] = 4
-x_in[0][4] = 5
+x_in[0][0] = 1 # Quarter
+x_in[0][1] = 2 # Age
+x_in[0][2] = 1	# Sex
+x_in[0][3] = 2 # Duration
+x_in[0][4] = 1 # Budget
 
 pred1 = loaded_model1.predict(x_in)
 pred2 = loaded_model2.predict(x_in)
@@ -47,7 +47,7 @@ prefs = []
 for _,value in pred_dict:
 	prefs.append(value)
 
-prefs.reverse()
+prefs.reverse()	
 data = {}
 
 with open('CountryDB.txt') as f:

@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from matplotlib import pyplot as plt
 
 tsize = 18047
-numepochs = 200
+numepochs = 100
 
 x_train = np.random.randn(tsize, 5)
 y_train = np.random.randint(85, size=(tsize, 1))
@@ -40,7 +40,7 @@ for i in range(tsize):
 		x_train[i][4] = 5
 	else:
 		x_train[i][4] = 6
-	y_train[i] = df['country'][i] - 10
+	y_train[i] = df['country'][i] - 9
 y_train = to_categorical(y_train, num_classes = 85)
 
 
@@ -51,11 +51,13 @@ y_test = to_categorical(np.random.randint(80, size=(100, 1)), num_classes=80)'''
 
 model1 = Sequential()
 model1.add(Dense(16, activation='tanh', input_dim=5))
-#model.add(Dropout(0.2))
+model1.add(Dropout(0.2))
 model1.add(Dense(24, activation='tanh'))
-#model.add(Dropout(0.2))
+model1.add(Dropout(0.4))
 model1.add(Dense(32, activation='tanh'))
+model1.add(Dropout(0.3))
 model1.add(Dense(24, activation='tanh'))
+model1.add(Dropout(0.4))
 model1.add(Dense(85, activation='softmax'))
 
 model1.compile(loss='categorical_crossentropy',
@@ -93,15 +95,15 @@ model2.fit(x_train, y_train,
 
 model3 = Sequential()
 model3.add(Dense(32, activation='relu', input_dim=5))
-#model2.add(Dropout(0.3))
+model3.add(Dropout(0.3))
 model3.add(Dense(24, activation='relu'))
-#model2.add(Dropout(0.2))
+model3.add(Dropout(0.4))
 model3.add(Dense(32, activation='relu'))
-#model2.add(Dropout(0.3))
+model3.add(Dropout(0.4))
 model3.add(Dense(24, activation='relu'))
-#model2.add(Dropout(0.2))
+model3.add(Dropout(0.3))
 model3.add(Dense(32, activation = 'relu'))
-#model2.add(Dropout(0.3))
+model3.add(Dropout(0.3))
 model3.add(Dense(85, activation='softmax'))
 
 model3.compile(loss='categorical_crossentropy',
